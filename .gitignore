@@ -33,3 +33,7 @@
 */!.vscode/tasks.json
 */!.vscode/launch.json
 */!.vscode/extensions.json
+
+# mysql data
+*/mysql_data/**
+*/mysql_data/
