@@ -11,13 +11,13 @@ services:
       - ./mysql/sqls/:/docker-entrypoint-initdb.d/
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: api-gateway
+      MYSQL_DATABASE: backend
 
-  api-gateway:
-    container_name: "api-gateway"
+  backend:
+    container_name: "backend"
     build:
       dockerfile: Dockerfile
-      context: ./gateway
+      context: ./backend
     ports:
       - 4000:8000
     depends_on:
