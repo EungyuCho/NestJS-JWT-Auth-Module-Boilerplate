@@ -6,6 +6,7 @@ import {
   CreateAccountOutput,
 } from './dtos/create-account.dto';
 import { LoginInput, LoginOutput } from './dtos/login.dto';
+import { UserProfileInput, UserProfileOutput } from './dtos/user-profile.dto';
 import { EditProfileInput, EditProfileOutput } from './dtos/edit-profile.dto';
 import { Role } from '../auth/role.decorator';
 import { AuthUser } from '../auth/auth-user.decorator';
@@ -30,6 +31,14 @@ export class UserResolver {
   @Role(['Any'])
   me(@AuthUser() authUser: User) {
     return authUser;
+  }
+
+  @Role(['Any'])
+  @Query(returns => UserProfileOutput)
+  userProfile(
+    @Args() userProfileInput: UserProfileInput,
+  ): Promise<UserProfileOutput> {
+    return this.usersService.findById(userProfileInput.userId);
   }
 
   @Role(['Any'])
